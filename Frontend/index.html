@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat App</title>
+  
+</head>
+<body>
+    <style>
+        .messages { border: 2px solid grey; border-radius: 4px; padding: 10px; overflow-y: auto; }
+        .messageSent { margin: 5px 0; padding: 8px; border: 1px solid; border-radius: 6px; max-width: 70%; word-wrap: break-word; }
+
+    </style>
+    
+  <div class="chat-container">
+    <div class="messages" id="messages"></div>
+    <div class="input-box">
+      <input id="msgInput" type="text" placeholder="Type a message..." />
+      <button id="sentBtn">Send</button>
+
+      <script src="chat.js"></script>
+    </div>
+  </div>
+  </body>
+  </html>
