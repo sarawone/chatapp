@@ -4,6 +4,7 @@ import fs from "fs";
 import { timeStamp } from "console";
 import {server as WebSocketServer} from "websocket"; // importing the websocket
 import http from "http";
+import { connect } from "http2";
 const app = express();
 const PORT =  3000;
 
@@ -47,16 +48,17 @@ app.post("/messages",(req,res)=>{
 //app.listen(PORT,() => console.log("Server running on http://localhost:3000"));
 
 //  webSocket handling
-
+const clients = new Set();
 wsServer.on("request",request =>{
     const connection = request.accept(null);
+    clients.add(connection);
     console.log("New WebSocket connection");
 
     //load history message 
-    connection.sendUTF(JSON.stringify({type : "history",message :loadMessages()}));
+    connection.sendUTF(JSON.stringify({type : "history",messages :loadMessages()}));
 
     connection.on("message", message => {
-        const data = JSON.parse(message);
+        const data = JSON.parse(message.utf8Data);
 
         const {text ,user}= data;
         const messages = loadMessages();
@@ -72,7 +74,12 @@ wsServer.on("request",request =>{
 
     });
 
-    connection.on("close",() => console.log("Disconnected..."));
+    connection.on("close",() => {
+        clients.delete(connection);
+        console.log("Disconnected...");
+    });
+
+        
 
 });
 
