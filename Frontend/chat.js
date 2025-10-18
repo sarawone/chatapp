@@ -2,7 +2,7 @@ const messages = document.getElementById("messages");
 const input = document.getElementById("msgInput");
 const sent = document.getElementById("sentBtn");
 
-const API_URL = "https://sarachat-backend.hosting.codeyourfuture.io";
+const API_URL = "https://sarachat-backend.hosting.codeyourfuture.io/messages";
 
 // webscoket connection
 
