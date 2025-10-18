@@ -2,11 +2,11 @@ const messages = document.getElementById("messages");
 const input = document.getElementById("msgInput");
 const sent = document.getElementById("sentBtn");
 
-const API_URL = "https://sarachat-backend.hosting.codeyourfuture.io/";
+const API_URL = "https://sarachat-backend.hosting.codeyourfuture.io";
 
 // webscoket connection
 
-const ws = new WebSocket("ws://sarachat-backend.hosting.codeyourfuture.io/");
+const ws = new WebSocket("ws://sarachat-backend.hosting.codeyourfuture.io");
 
 ws.onopen = () => {
     console.log("Connected to websocket server");
