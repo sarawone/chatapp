@@ -4,7 +4,7 @@ import fs from "fs";
 import { timeStamp } from "console";
 import {server as WebSocketServer} from "websocket"; // importing the websocket
 import http from "http";
-import { connect } from "http2";
+
 const app = express();
 const PORT =  3000;
 
@@ -33,6 +33,19 @@ function saveMessages (messages){
 app.get("/messages",(req,res) =>{
     const message = loadMessages();
     res.json(message)
+});
+
+app.get("/",(req,res) => {
+    res.json({
+        message:"Connecting chatup.....",
+        endpoints:{
+            messages:"/messages",
+            websocket : "ws://" + req.get("host")
+        }
+
+
+    })
+
 });
 
 app.post("/messages",(req,res)=>{
